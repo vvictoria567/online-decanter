@@ -2,18 +2,28 @@ const pages = document.querySelectorAll(".page");
 const navItems = document.querySelectorAll(".nav-item");
 const pageButtons = document.querySelectorAll("[data-page]");
 
-function showPage(pageId) {
+function showPage(pageId, button = null) {
     pages.forEach(page => {
         page.classList.toggle("active", page.id === pageId);
     });
 
     navItems.forEach(item => {
-        item.classList.toggle(
-            "active",
-            item.dataset.page === pageId
-        );
+        item.classList.remove("active");
     });
+
+    if (button) {
+        button.classList.add("active");
+    } else {
+        const activeButton = document.querySelector(
+            `.nav-item[onclick*="'${pageId}'"]`
+        );
+
+        if (activeButton) {
+            activeButton.classList.add("active");
+        }
+    }
 }
+
 
 /* Переходы из меню и карточек */
 pageButtons.forEach(button => {
