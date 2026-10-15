@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>online decanter</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Онлайн-деканат</div>
+            <nav class="nav">
+                <button class="nav-item active" onclick="showPage('home', this)">
+                    <img src="icons/home.svg" alt="">
+                    <span>Главная</span>
+                </button>
+                <button class="nav-item" onclick="showPage('documents', this)">
+                    <img src="icons/doc.svg" alt="">
+                    <span>Документы</span>
+                </button>
+                <button class="nav-item" onclick="showPage('chat', this)">
+                    <img src="icons/chat.svg" alt="">
+                    <span>Чат</span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <section class="home-page" id="home">
+                <div class="welcome">
+                    <p>
+                        Загрузите документы, проверьте их на соответствие
+                        требованиям и получите ответы на вопросы.
+                    </p>
+                    <button class="upload-button" onclick="uploadDocument()">
+                        <span>Загрузить документ</span>
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+
+                <div class="cards">
+                    <button class="card" onclick="showPage('documents')">
+                        <div>
+                            <h3>Проверить документы</h3>
+                            <p>Проверьте документы на соответствие требованиям</p>
+                        </div>
+                        <span class="card-arrow">→</span>
+                    </button>
+                    <button class="card" onclick="showPage('chat')">
+                        <div>
+                            <h3>Задать вопрос</h3>
+                            <p>Получите ответ по правилам приёма</p>
+                        </div>
+                        <span class="card-arrow">→</span>
+                    </button>
+                    <button class="card">
+                        <div>
+                            <h3>Правила приёма</h3>
+                            <p>Ознакомьтесь с требованиями к документам и порядком их подачи</p>
+                        </div>
+                        <span class="card-arrow">→</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="page documents-page" id="documents">
+
+                <div class="page-heading">
+                    <button class="back-button" id="back-home" aria-label="Назад">
+                        ←
+                    </button>
+                    <h1>Загрузка документа</h1>
+                </div>
+
+                <div class="document-layout">
+                <!-- Область загрузки -->
+                    <div class="drop-zone" id="drop-zone">
+
+                        <input
+                            type="file"
+                            id="document-input"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            hidden
+                        >
+
+                        <svg class="file-icon"
+                            viewBox="0 0 80 90"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path
+                                d="M16 1H47L72 26V76C72 82 68 87 61 87H16C9 87 4 82 4 76V12C4 6 9 1 16 1Z"
+                                stroke="#8155FF"
+                                stroke-width="1.2"
+                            />
+                            <path
+                                d="M47 1V21C47 24 49 26 52 26H72"
+                                stroke="#8155FF"
+                                stroke-width="1.2"
+                            />
+                            <path
+                                d="M38 38V67M25 55L38 68L51 55"
+                                stroke="#8155FF"
+                                stroke-width="1.2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+
+                        <p class="drop-title">
+                            Перетащите файл сюда<br>
+                            или <button id="choose-file" class="text-button">
+                                выберите на устройстве
+                            </button>
+                        </p>
+
+                        <p class="file-hint">
+                            Поддерживаемые форматы: PDF, JPG, PNG<br>
+                            Максимальный размер — 10 МБ
+                        </p>
+
+                        <p class="selected-file" id="selected-file"></p>
+
+                    </div>
+
+                    <aside class="tips">
+                        <h2>Советы</h2>
+                        <div class="tip">
+                            <span class="tip-icon">⛶</span>
+                            <p>Убедитесь, что документ полностью виден на фото</p>
+                        </div>
+                        <div class="tip">
+                            <span class="tip-icon">☼</span>
+                            <p>Избегайте бликов и тени</p>
+                        </div>
+                        <div class="tip">
+                            <span class="tip-icon">◎</span>
+                            <p>Файл должен быть читаемым и в хорошем качестве</p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- Страница 3: Результат проверки -->
+            <section class="page result-page" id="results">
+                <div class="page-heading">
+                    <button class="back-button" id="back-documents" aria-label="Назад">
+                        ←
+                    </button>
+                    <div class="result-heading-text">
+                        <h1>Результат проверки</h1>
+                        <p class="document-meta">
+                            <span>♧</span>
+                            <span id="result-filename">Студенческий билет № 123456</span>
+                            <span id="result-date">14.10.2026</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Состояние проверки: меняет js -->
+                <div class="result-status success" id="result-status">
+                    <div class="status-icon" id="status-icon">✓</div>
+
+                    <div>
+                        <h2 id="status-title">Документы в порядке</h2>
+                        <p id="status-description">
+                            Все обязательные сведения найдены
+                        </p>
+                    </div>
+                </div>
+
+                <div class="result-layout">
+
+                    <!-- Проверка полей документа -->
+                    <div class="requirements-card">
+                        <h2>Проверка по требованиям Положения</h2>
+
+                        <div class="requirements-list" id="requirements-list">
+                            <!-- Заполняется через JavaScript -->
+                        </div>
+
+                        <button class="ask-button" id="ask-about-document">
+                            <span>Задать вопрос о документе</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+
+
+                    <a
+                        class="regulation-card"
+                        href="#"
+                        id="regulation-link"
+                    >
+                        <span class="regulation-title">
+                            Ссылка на Положение
+                            <span class="external-icon">↗</span>
+                        </span>
+
+                        <span class="regulation-document">
+                            <span class="regulation-file-icon">▤</span>
+
+                            <span>
+                                <span class="regulation-name">
+                                    Положение о приёме документов
+                                </span>
+                                <span class="regulation-subtitle">
+                                    Раздел 2. Требования к документам
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Страница: Чат -->
+            <section class="page chat-page" id="chat">
+                <header class="chat-header">
+                    <h1>Цифровой секретарь</h1>
+                </header>
+
+                <div class="chat-messages" id="chat-messages">
+
+                    <!-- Приветствие -->
+                    <div class="message message-bot">
+                        <div class="message-bubble">Привет! Я — цифровой секретарь вашего университета. Чем могу помочь?
+                        </div>
+                    </div>
+
+                    <!-- Быстрые вопросы -->
+                    <div class="quick-questions" id="quick-questions">
+                        <button class="quick-question" data-question="Как получить академическую справку?">
+                            Как получить справку?
+                        </button>
+
+                        <button class="quick-question" data-question="Когда будет сессия?">
+                            Когда будет сессия?
+                        </button>
+
+                        <button class="quick-question" data-question="Где найти расписание?">
+                            Где найти расписание?
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Поле отправки сообщения -->
+                <form class="chat-composer" id="chat-form">
+                    <input
+                        type="text"
+                        id="chat-input"
+                        placeholder="Написать сообщение..."
+                        autocomplete="off"
+                        aria-label="Текст сообщения"
+                    >
+
+                    <button type="submit" class="chat-send" aria-label="Отправить сообщение">
+                        <span>›</span>
+                    </button>
+                </form>
+
+            </section>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

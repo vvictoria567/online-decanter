@@ -1,0 +1,920 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 28px 20px;
+    background: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #21194d;
+    font-size: 14px;
+}
+
+button {
+    font: inherit;
+}
+
+/* Контейнер приложения */
+.app {
+    width: 100%;
+    max-width: 1050px;
+    min-height: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+}
+
+/* Боковая панель */
+.sidebar {
+    flex: 0 0 168px;
+    min-height: 680px;
+    padding: 28px 11px;
+    background: #f2eaff;
+}
+
+.logo {
+    margin: 0 4px 72px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-item {
+    width: 100%;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #29234f;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.nav-item img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.nav-item.active {
+    background: #ddc8ff;
+    color: #6542f5;
+}
+
+/* Основная часть */
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    background: #fff;
+}
+
+/* Переключение страниц */
+.page {
+    display: none;
+    min-height: 680px;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Главная страница */
+.home-page {
+    padding: 140px 50px 70px;
+}
+
+.welcome {
+    max-width: 540px;
+    margin-bottom: 88px;
+}
+
+.welcome p {
+    max-width: 500px;
+    margin: 0 0 38px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #201943;
+}
+
+.upload-button {
+    width: 400px;
+    max-width: 100%;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    border: none;
+    border-radius: 9px;
+    background: #6150ed;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.upload-button:hover {
+    background: #5140dc;
+}
+
+.arrow {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+/* Карточки на главной */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 56px 22px 28px;
+    border: none;
+    border-radius: 8px;
+    background: #5141e9;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+}
+
+.card:hover {
+    background: #4635da;
+}
+
+.card h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.card p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #e5dfff;
+}
+
+.card-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 16px;
+    font-size: 23px;
+    font-weight: 300;
+}
+
+/* Заголовок страницы загрузки */
+.documents-page {
+    padding: 28px 28px 40px;
+}
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 44px;
+}
+
+.page-heading h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.back-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #6952ff;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Загрузка + советы */
+.document-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(190px, 1fr);
+    align-items: start;
+    gap: 48px;
+    padding: 0 24px;
+}
+
+/* Область загрузки файла */
+.drop-zone {
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    border: 1px dashed transparent;
+    border-radius: 12px;
+    background: #f2eaff;
+    text-align: center;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.drop-zone.drag-over {
+    border-color: #8155ff;
+    background: #e9dcff;
+}
+
+.file-icon {
+    width: 82px;
+    height: 92px;
+    margin-bottom: 34px;
+}
+
+.drop-title {
+    margin: 0 0 18px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.text-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #6542f5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.file-hint {
+    margin: 0;
+    color: #b7a6e8;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.selected-file {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    margin: 14px 0 0;
+    color: #6041d8;
+    font-size: 12px;
+}
+
+/* Советы */
+.tips {
+    padding: 22px 16px;
+    border-radius: 12px;
+    background: #f2eaff;
+}
+
+.tips h2 {
+    margin: 0 0 26px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.tip {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 10px;
+    align-items: start;
+    margin-bottom: 18px;
+}
+
+.tip:last-child {
+    margin-bottom: 0;
+}
+
+.tip-icon {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #29234f;
+}
+
+.tip p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #17132d;
+}
+
+/* Заглушка чата */
+.placeholder-page {
+    padding: 50px;
+}
+
+.placeholder-page h1 {
+    font-size: 24px;
+}
+
+/* Не позволяем контенту сжиматься неожиданно */
+img,
+svg {
+    max-width: 100%;
+}
+
+
+/*4 - 4.1*/
+/* Результат проверки */
+.result-page {
+    padding: 44px 40px;
+}
+
+.result-page .page-heading {
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 44px;
+}
+
+.result-heading-text h1 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.document-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 0;
+    color: #aaa0d9;
+    font-size: 14px;
+}
+
+/* Верхний статус */
+.result-status {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    min-height: 118px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    border: 1px solid;
+    border-radius: 18px;
+}
+
+.result-status.success {
+    background: #dff5e2;
+    border-color: #65d47a;
+}
+
+.result-status.warning {
+    background: #fff5cc;
+    border-color: #efc900;
+}
+
+.status-icon {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 26px;
+}
+
+.success .status-icon {
+    background: #54ce6a;
+}
+
+.warning .status-icon {
+    background: #eac900;
+}
+
+.result-status h2 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #111;
+}
+
+.result-status p {
+    margin: 0;
+    color: #111;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Две колонки */
+.result-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(220px, 0.85fr);
+    align-items: start;
+    gap: 38px;
+}
+
+/* Карточка с результатами проверки */
+.requirements-card,
+.regulation-card {
+    border: 1px solid #dfceff;
+    border-radius: 18px;
+    background: #fff;
+}
+
+.requirements-card {
+    padding: 22px 18px 20px;
+}
+
+.requirements-card > h2 {
+    margin: 0 0 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #dfceff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Строки найденных и отсутствующих полей */
+.requirement-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 36px;
+    border-bottom: 1px solid #dfceff;
+}
+
+.requirement-icon {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.requirement-row.found .requirement-icon {
+    background: #54ce6a;
+}
+
+.requirement-row.missing .requirement-icon {
+    background: #eac900;
+}
+
+.requirement-name {
+    flex: 1;
+    font-size: 11px;
+    color: #39315e;
+}
+
+.requirement-result {
+    font-size: 10px;
+    text-align: right;
+}
+
+.requirement-row.found .requirement-result {
+    color: #54ce6a;
+}
+
+.requirement-row.missing .requirement-result {
+    color: #d5a600;
+}
+
+/* Кнопка вопроса */
+.ask-button {
+    width: min(100%, 450px);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 18px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background: #6252ed;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.ask-button:hover {
+    background: #5140dc;
+}
+
+/* Ссылка на положение */
+.regulation-card {
+    display: block;
+    padding: 22px 18px;
+    color: #29234f;
+    text-decoration: none;
+}
+
+.regulation-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.external-icon {
+    font-size: 17px;
+}
+
+.regulation-document {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.regulation-file-icon {
+    font-size: 17px;
+}
+
+.regulation-name,
+.regulation-subtitle {
+    display: block;
+}
+
+.regulation-name {
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+.regulation-subtitle {
+    font-size: 9px;
+    color: #b4aad7;
+}
+
+
+/*чат*/
+
+.chat-page {
+    position: relative;
+    height: 680px;
+    min-height: 680px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+}
+
+.chat-page.active {
+    display: flex;
+}
+
+/* Заголовок */
+.chat-header {
+    flex: 0 0 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #e5d5ff;
+    background: #fff;
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #29234f;
+}
+
+/* Область переписки */
+.chat-messages {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 30px 40px 24px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Сообщения */
+.message {
+    display: flex;
+    width: 100%;
+}
+
+.message-bot {
+    justify-content: flex-start;
+}
+
+.message-user {
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 8px 12px;
+    border-radius: 19px;
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.message-bot .message-bubble {
+    background: #d9c3fa;
+    color: #29234f;
+    border-bottom-left-radius: 5px;
+}
+
+.message-user .message-bubble {
+    background: #f0e7ff;
+    color: #29234f;
+    border: 1px solid #d7c1ff;
+    border-bottom-right-radius: 5px;
+}
+
+/* Быстрые вопросы */
+.quick-questions {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    max-width: 100%;
+}
+
+.quick-question {
+    min-height: 33px;
+    padding: 6px 18px;
+    border: 1px solid #c9a7ff;
+    border-radius: 22px;
+    background: #fff;
+    color: #7250ff;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.quick-question:hover {
+    background: #f2eaff;
+}
+
+/* Поле ввода */
+.chat-composer {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 30px 18px;
+    padding: 8px 10px 8px 20px;
+    border: 1px solid #c9a7ff;
+    border-radius: 22px;
+    background: #fff;
+}
+
+.chat-composer input {
+    flex: 1;
+    min-width: 0;
+    height: 30px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #29234f;
+    font: inherit;
+    font-size: 14px;
+}
+
+.chat-composer input::placeholder {
+    color: #bba4ff;
+}
+
+.chat-send {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: #bb95fa;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chat-send:hover {
+    background: #9163eb;
+}
+
+.chat-send span {
+    margin-top: -3px;
+    font-size: 29px;
+    line-height: 1;
+}
+
+/* Анимация появления */
+.message {
+    animation: message-appear 0.2s ease-out;
+}
+
+@keyframes message-appear {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Компактный экран */
+/* @media (max-width: 600px) {
+    .chat-page {
+        height: 100%;
+        min-height: 560px;
+    }
+
+    .chat-header {
+        flex-basis: 64px;
+    }
+
+    .chat-header h1 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .chat-messages {
+        padding: 20px 16px;
+        gap: 18px;
+    }
+
+    .message-bubble {
+        max-width: 88%;
+        padding: 14px 12px;
+        font-size: 13px;
+    }
+
+    .quick-question {
+        max-width: 100%;
+        font-size: 13px;
+    }
+
+    .chat-composer {
+        margin: 0 16px 18px;
+        padding-left: 13px;
+    }
+
+    .chat-composer input {
+        font-size: 14px;
+    }
+} */
+
+
+
+
+
+
+/* 
+@media (max-width: 700px) {
+    .main {
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        padding: 80px 20px 32px;
+    }
+
+    .home-page {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .welcome {
+        margin: 0 0 24px;
+    }
+
+    .welcome h1 {
+        margin: 0 0 10px;
+        font-size: 24px;
+        line-height: 1.3;
+        font-weight: 400;
+        color: #111;
+    }
+
+    .welcome p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #222;
+    }
+
+    .upload-card {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        min-height: 188px;
+        padding: 28px 26px;
+        margin-bottom: 26px;
+        border-radius: 14px;
+        background: #d9c3fa;
+    }
+
+    .upload-card h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        line-height: 1.3;
+        font-weight: 400;
+        color: #111;
+    }
+
+    .upload-card p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.45;
+        color: #222;
+    }
+
+
+    .upload-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .upload-button,
+    .gallery-button {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 60px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .upload-button {
+        margin: 0;
+        border: 1px solid #5144ed;
+        background: #5144ed;
+        color: white;
+    }
+
+    .upload-button .arrow {
+        display: none;
+    }
+
+    .gallery-button {
+        border: 1px solid #7164ff;
+        background: white;
+        color: #333;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card {
+        min-height: 110px;
+    }
+}
+
+@media (max-width: 360px) {
+    .main {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .upload-card {
+        padding: 24px 20px;
+    }
+
+    .welcome h1 {
+        font-size: 22px;
+    }
+} */
