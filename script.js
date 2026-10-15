@@ -316,28 +316,26 @@ document.querySelectorAll(".quick-question").forEach(button => {
     });
 });
 
+//правила
+document.querySelectorAll(".rule-header").forEach(button => {
+    button.addEventListener("click", () => {
+        const currentItem = button.closest(".rule-item");
+        const shouldOpen = !currentItem.classList.contains("is-open");
 
+        document.querySelectorAll(".rule-item").forEach(item => {
+            item.classList.remove("is-open");
+            item.querySelector(".rule-header").setAttribute("aria-expanded", "false");
+        });
 
-// подключение кнопки к камере и галерее (мобилка)
-document.getElementById("mobile-make-photo").addEventListener("click", () => {
-    document.getElementById("mobile-camera-input").click();
+        if (shouldOpen) {
+            currentItem.classList.add("is-open");
+            button.setAttribute("aria-expanded", "true");
+        }
+    });
 });
 
-document.getElementById("mobile-choose-gallery").addEventListener("click", () => {
-    document.getElementById("mobile-gallery-input").click();
-});
 
-document.getElementById("mobile-camera-input").addEventListener("change", event => {
-    const file = event.target.files[0];
-    if (file) handleFile(file);
-    event.target.value = "";
-});
 
-document.getElementById("mobile-gallery-input").addEventListener("change", event => {
-    const file = event.target.files[0];
-    if (file) handleFile(file);
-    event.target.value = "";
-});
 
 // кнопка скрытия слайдбара
 const menuToggle = document.getElementById("menu-toggle");

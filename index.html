@@ -34,6 +34,10 @@
                     <img src="icons/chat.svg" alt="">
                     <span>Чат</span>
                 </button>
+                <button class="nav-item" onclick="showPage('admission', this)">
+                    <img src="icons/doc.svg" alt="">
+                    <span>Правила приёма</span>
+                </button>
             </nav>
         </aside>
 
@@ -104,7 +108,7 @@
                         </div>
                         <span class="card-arrow">→</span>
                     </button>
-                    <button class="card">
+                    <button class="card" onclick="showPage('admission')">
                         <div>
                             <h3>Правила приёма</h3>
                             <p>Ознакомьтесь с требованиями к документам и порядком их подачи</p>
@@ -309,6 +313,66 @@
                     </button>
                 </form>
 
+            </section>
+            <!-- Страница: правила -->
+            <section class="page" id="admission">
+                 <h1 class="admission-title">Правила</h1>
+                <div class="rules-list">
+                    <div class="rule-item">
+                        <button class="rule-header" type="button" aria-expanded="false">
+                            <span>1. Общие положения</span>
+                            <span class="rule-arrow"></span>
+                        </button>
+                        <div class="rule-body">
+                            <p>Обучающиеся обязаны соблюдать учебный план, выполнять требования образовательной программы и своевременно проходить предусмотренные учебным процессом контрольные мероприятия.</p>
+                            <p>Студент несёт ответственность за выполнение учебных заданий и соблюдение установленных сроков сдачи работ.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <button class="rule-header" type="button" aria-expanded="false">
+                            <span>2. Текущий контроль успеваемости</span>
+                            <span class="rule-arrow"></span>
+                        </button>
+                        <div class="rule-body">
+                            <p>Текущий контроль проводится в течение семестра для оценки освоения учебного материала.</p>
+                            <p>Он может включать контрольные работы, тестирование, практические задания, ответы на семинарах и выполнение проектов. Критерии оценивания определяются программой дисциплины.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <button class="rule-header" type="button" aria-expanded="false">
+                            <span>3. Промежуточная аттестация</span>
+                            <span class="rule-arrow"></span>
+                        </button>
+                        <div class="rule-body">
+                            <p>Промежуточная аттестация проводится по завершении изучения дисциплины или учебного периода в форме экзамена, зачёта или другой формы, предусмотренной учебным планом.</p>
+                            <p>Студенту необходимо ознакомиться с расписанием и требованиями преподавателя.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <button class="rule-header" type="button" aria-expanded="false">
+                            <span>4. Порядок и основания для переноса экзамена</span>
+                            <span class="rule-arrow"></span>
+                        </button>
+                        <div class="rule-body">
+                            <p>Перенос экзамена может рассматриваться при наличии уважительных причин, препятствующих явке в установленное время.</p>
+                            <p>Студенту необходимо обратиться в деканат и предоставить подтверждающие документы, если они требуются. Новая дата определяется в установленном университетом порядке.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-item">
+                        <button class="rule-header" type="button" aria-expanded="false">
+                            <span>5. Итоговая аттестация</span>
+                            <span class="rule-arrow"></span>
+                        </button>
+                        <div class="rule-body">
+                            <p>Итоговая аттестация проводится для оценки результатов освоения образовательной программы.</p>
+                            <p>Она может включать государственный экзамен, защиту выпускной квалификационной работы или другие формы, предусмотренные программой. Сроки и порядок проведения сообщаются заранее.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
 

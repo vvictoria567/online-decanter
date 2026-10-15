@@ -745,6 +745,120 @@ svg {
     }
 }
 
+/* Страница «Правила» */
+.admission-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 34px 36px;
+    box-sizing: border-box;
+}
+
+.admission-title {
+    margin: 0 0 32px;
+    color: #171044;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#admission {
+    padding-left: 53px !important;
+    padding-right: 53px !important;
+    box-sizing: border-box;
+}
+
+#admission .admission-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 34px 0 !important;
+    box-sizing: border-box;
+}
+
+#admission .rules-list {
+    width: 100%;
+    box-sizing: border-box;
+}
+.rules-list {
+    width: 100%;
+    padding: 14px 24px;
+    border: 1px solid #e1ccff;
+    border-radius: 16px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.rule-item {
+    border-bottom: 1px solid #dfcaff;
+}
+
+.rule-item:last-child {
+    border-bottom: none;
+}
+
+.rule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #29234f;
+    font: inherit;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.rule-header:hover {
+    background: #f5efff;
+}
+
+.rule-item.is-open .rule-header {
+    background: #eee5fa;
+}
+
+.rule-arrow {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #171044;
+    border-right: 2px solid #171044;
+    transform: rotate(135deg);
+    transition: transform 0.2s ease;
+    margin: -5px 3px 0 0;
+}
+
+.rule-item.is-open .rule-arrow {
+    transform: rotate(-45deg);
+    margin-top: 5px;
+}
+
+.rule-body {
+    display: none;
+    padding: 4px 8px 18px;
+    color: #292929;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.rule-item.is-open .rule-body {
+    display: block;
+}
+
+.rule-body p {
+    margin: 8px 0;
+}
+
+.gallery-icon {
+    color: #fff;
+    font-size: 25px;
+    line-height: 1;
+}
 
 /* Мобильный экран скрыт на компьютере */
 .mobile-home {
@@ -753,6 +867,7 @@ svg {
 .menu-toggle {
     display: none;
 }
+
 @media (max-width: 600px) {
     body {
         margin: 0;
@@ -988,4 +1103,35 @@ svg {
     body.menu-open {
         overflow: hidden;
     }
+
+
+    .admission-content {
+    width: 100%;
+    padding: 80px 16px 28px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    }
+    #admission {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    .admission-title {
+        margin-bottom: 24px;
+        font-size: 22px;
+    }
+
+    .rules-list {
+        padding: 8px 12px;
+        border-radius: 12px;
+    }
+
+    .rule-header {
+        min-height: 48px;
+        font-size: 13px;
+    }
+
+    .rule-body {
+        font-size: 12px;
+    }
+
 }
