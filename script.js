@@ -33,19 +33,26 @@ pageButtons.forEach(button => {
 });
 
 /* Главная -> загрузка документа */
-document.getElementById("open-upload").addEventListener("click", () => {
-    showPage("documents");
-});
+const openUploadButton = document.getElementById("open-upload");
 
+if (openUploadButton) {
+    openUploadButton.addEventListener("click", () => {
+        // Оставь здесь весь свой прежний код загрузки документа
+    });
+}
 /* Возврат на главную */
 document.getElementById("back-home").addEventListener("click", () => {
     showPage("home");
 });
 
 /* Правила приёма — пока заглушка */
-document.getElementById("admission-rules").addEventListener("click", () => {
-    alert("Раздел «Правила приёма» пока в разработке.");
-});
+const admissionRulesButton = document.getElementById("admission-rules");
+
+if (admissionRulesButton) {
+    admissionRulesButton.addEventListener("click", () => {
+        alert("Раздел «Правила приёма» пока в разработке.");
+    });
+}
 
 /* Выбор файла */
 const input = document.getElementById("document-input");
@@ -308,3 +315,77 @@ document.querySelectorAll(".quick-question").forEach(button => {
         sendChatMessage(button.dataset.question);
     });
 });
+
+
+
+// подключение кнопки к камере и галерее (мобилка)
+document.getElementById("mobile-make-photo").addEventListener("click", () => {
+    document.getElementById("mobile-camera-input").click();
+});
+
+document.getElementById("mobile-choose-gallery").addEventListener("click", () => {
+    document.getElementById("mobile-gallery-input").click();
+});
+
+document.getElementById("mobile-camera-input").addEventListener("change", event => {
+    const file = event.target.files[0];
+    if (file) handleFile(file);
+    event.target.value = "";
+});
+
+document.getElementById("mobile-gallery-input").addEventListener("change", event => {
+    const file = event.target.files[0];
+    if (file) handleFile(file);
+    event.target.value = "";
+});
+
+// кнопка скрытия слайдбара
+const menuToggle = document.getElementById("menu-toggle");
+const sidebar = document.querySelector(".sidebar");
+
+// Затемнение фона
+const menuOverlay = document.createElement("div");
+menuOverlay.className = "menu-overlay";
+document.body.appendChild(menuOverlay);
+
+function setMenuOpen(isOpen) {
+    if (!menuToggle || !sidebar) return;
+
+    sidebar.classList.toggle("is-open", isOpen);
+    menuToggle.classList.toggle("is-open", isOpen);
+    menuOverlay.classList.toggle("is-visible", isOpen);
+    document.body.classList.toggle("menu-open", isOpen);
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Закрыть меню" : "Открыть меню"
+    );
+}
+
+// Открытие и закрытие по кнопке-бургеру
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener("click", () => {
+        const isOpen = sidebar.classList.contains("is-open");
+        setMenuOpen(!isOpen);
+    });
+
+    // Закрытие после выбора раздела
+    sidebar.querySelectorAll(".nav-item").forEach(button => {
+        button.addEventListener("click", () => {
+            setMenuOpen(false);
+        });
+    });
+}
+
+// Закрытие при клике на затемнение
+menuOverlay.addEventListener("click", () => {
+    setMenuOpen(false);
+});
+
+// Закрытие клавишей Escape
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        setMenuOpen(false);
+    }
+}); 

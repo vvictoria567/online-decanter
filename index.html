@@ -8,6 +8,17 @@
 </head>
 <body>
     <div class="app">
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <aside class="sidebar">
             <div class="logo">Онлайн-деканат</div>
             <nav class="nav">
@@ -28,6 +39,45 @@
 
         <main class="main">
             <section class="home-page" id="home">
+
+
+                <!-- Мобильная главная -->
+                <div class="mobile-home">
+                    <h1>Онлайн-деканат</h1>
+                    <p class="mobile-subtitle">Ваш цифровой помощник</p>
+
+                    <div class="mobile-upload-card">
+                        <strong>Загрузите фото студенческого документа</strong>
+                        <p>
+                            Например: студенческий билет,
+                            справка, зачётная книжка и т. д.
+                        </p>
+                    </div>
+
+                    <button type="button" class="mobile-photo-btn" id="mobile-make-photo">
+                        Сделать фото
+                    </button>
+
+                    <button type="button" class="mobile-gallery-btn" id="mobile-choose-gallery">
+                        Выбрать из галереи
+                    </button>
+
+                    <input
+                        type="file"
+                        id="mobile-camera-input"
+                        accept="image/*"
+                        capture="environment"
+                        hidden
+                    >
+
+                    <input
+                        type="file"
+                        id="mobile-gallery-input"
+                        accept="image/*"
+                        hidden
+                    >
+                </div>
+
                 <div class="welcome">
                     <p>
                         Загрузите документы, проверьте их на соответствие
